@@ -60,10 +60,8 @@ public class ControllerAdminEditHocVien extends HttpServlet {
 		
 		HocVien objItem=mHocVien.getItemByMa(mahv);
 		if (request.getParameter("submit") != null){
-			// tĂªn há»�c viĂªn
 			String tenhv = new String(request.getParameter("tenhv").getBytes("ISO-8859-1"), "UTF-8");
 			
-			// ngĂ y sinh
 			String ngay=request.getParameter("day");
 			String thang=request.getParameter("month");
 			String nam=request.getParameter("year");
@@ -75,25 +73,17 @@ public class ControllerAdminEditHocVien extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(stringDate1 + "\t" + date1);
 			java.sql.Date ngaySinh = new java.sql.Date(date1.getTime());
 			
-			// giá»›i tĂ­nh
 			int gt=Integer.parseInt(request.getParameter("gioitinh"));
-			// quĂª
 			String que=new String(request.getParameter("quequan").getBytes("ISO-8859-1"), "UTF-8");
-			//phĂ²ng
 			String maphong=request.getParameter("maphong");
-			//giáº£ng viĂªn
 			String magv=request.getParameter("magv");
-			// bĂ¡c sÄ©
 			String mabs=request.getParameter("mabs");
-			// má»©c Ä‘á»™
 			String mucdo=new String(request.getParameter("mucdo").getBytes("ISO-8859-1"), "UTF-8");
-			// lá»‹ch sá»­
 			String lichsu=new String(request.getParameter("lichsu").getBytes("ISO-8859-1"), "UTF-8");
+			String dieutri=new String(request.getParameter("dieutri").getBytes("ISO-8859-1"), "UTF-8");
 			
-			// ngĂ y vĂ o
 			String dVao=request.getParameter("dayvao");
 			String mVao=request.getParameter("monthvao");
 			String yVao=request.getParameter("yearvao");
@@ -102,13 +92,11 @@ public class ControllerAdminEditHocVien extends HttpServlet {
 			try {
 				date2 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate2);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.out.println(stringDate2 + "\t" + date2);
 			java.sql.Date ngayVao = new java.sql.Date(date2.getTime());
 			
-			// ngĂ y ra
 			String dRa=request.getParameter("dayra");
 			String mRa=request.getParameter("monthra");
 			String yRa=request.getParameter("yearra");
@@ -117,14 +105,11 @@ public class ControllerAdminEditHocVien extends HttpServlet {
 			try {
 				date3 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate3);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(stringDate3 + "\t" + date3);
 			java.sql.Date ngayRa = new java.sql.Date(date3.getTime());
-			System.out.println(ngayRa);
 			
-			HocVien objHV=new HocVien(mahv, tenhv, ngaySinh, gt, que, maphong, magv, mabs, ngayVao, ngayRa, mucdo, lichsu);
+			HocVien objHV=new HocVien(mahv, tenhv, ngaySinh, gt, que, maphong, magv, mabs, ngayVao, ngayRa, mucdo, lichsu,dieutri);
 			int result =mHocVien.editItem(objHV);
 			if (result == 0){
 				response.sendRedirect(request.getContextPath() + "/admin/HocVien?msg=0");

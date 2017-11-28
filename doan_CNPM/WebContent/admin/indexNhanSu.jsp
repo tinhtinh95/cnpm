@@ -48,12 +48,21 @@
           &emsp;&ensp;
           <%
 		                        Users objU=(Users) session.getAttribute("sObjUser");
+          						String ma="";
+          						String mans=objU.getMaNhanSu();
+          						out.print(mans);
+          						mans=mans.trim().substring(0, 2);
+          						out.print(mans);
+          						if("BS".equals(mans)||"GV".equals(mans)){
+          							ma=objU.getMaNhanSu().trim();
+          							
+          						}
+          						out.print(ma);
 		                        if("ADMIN".equals(objU.getRole())){
 		                    %>
 	      <div class="btn btn-info">
 			  <!-- Button -->
 			  <div>
-		      	<%-- <a style="color:white" href="<%=request.getContextPath() %>/admin/addBacSi" title="Thêm nhân sự" class="templatemo-white-button">Thêm</a> --%>
 			      	<ul class="nav">
 				    <li class="dropdown" id="hr" >
 				       <a title="" href="#" data-toggle="dropdown" data-target="#hr" class="dropdown-toggle">Thêm</a>
@@ -66,7 +75,7 @@
 			  </div>
 			  
 		  </div>
-		  <%} %>
+		  <%}%>
           <div class="widget-content nopadding">
           <br />
           	<form method="post" action="">
@@ -103,30 +112,37 @@
 		                  <%}else{ %>
 		                  <td width="14%" style="text-align:center;">Nữ</td>
 		                  <%} %>
-		                  <% if(objItem.getMa().substring(0, 2).equals("GV")){ %>
+		                  <% if(objItem.getMa().trim().substring(0, 2).equals("GV")){ %>
 		                  <td width="14%" style="text-align:center;">Giảng Viên</td>
+		                   <td width="20%" style="text-align:center;">
+		                  <%
+		                        if("ADMIN".equals(objU.getRole())){
+		                    %>
 		                  
-		                  <td width="20%" style="text-align:center;">
 		                  
 		                  	<a style="color:blue" href="<%=request.getContextPath() %>/admin/editGiangVien?magv=<%=objItem.getMa() %>">Sửa<img src="<%=request.getContextPath() %>/templates/admin/img/pencil.gif" alt="edit" /> / </a>
 							<a style="color:blue" href="<%=request.getContextPath() %>/admin/delGiangVien?magv=<%=objItem.getMa() %>" onclick="return confirm('Bạn có muốn xóa hay không?')">Xóa <img src="<%=request.getContextPath() %>/templates/admin/img/bin.gif" width="16" height="16" alt="delete" /></a>
+		                  <%}else if( ma.equals(objItem.getMa())){ %>
+		                  	<a style="color:blue" href="<%=request.getContextPath() %>/admin/editGiangVien?magv=<%=objItem.getMa() %>">Sửa<img src="<%=request.getContextPath() %>/templates/admin/img/pencil.gif" alt="edit" /> </a>
+		                  
+		                  <%} %>
 		                  </td>
 		                  <%}else{ %>
 		                  <td width="14%" style="text-align:center;">Bác sĩ</td>
-		                  
 		                  <td width="20%" style="text-align:center;">
-		                   <%
+		                  <%
 		                        if("ADMIN".equals(objU.getRole())){
 		                    %>
 		                  	<a style="color:blue" href="<%=request.getContextPath() %>/admin/editBacSi?mabs=<%=objItem.getMa() %>">Sửa<img src="<%=request.getContextPath() %>/templates/admin/img/pencil.gif" alt="edit" /> / </a>
 							<a style="color:blue" href="<%=request.getContextPath() %>/admin/delBacSi?mabs=<%=objItem.getMa() %>" onclick="return confirm('Bạn có muốn xóa hay không?')">Xóa <img src="<%=request.getContextPath() %>/templates/admin/img/bin.gif" width="16" height="16" alt="delete" /></a>
-							<%} %>
-							</td>
+							<%} else if( ma.equals(objItem.getMa().trim())){ %>
+		                  	<a style="color:blue" href="<%=request.getContextPath() %>/admin/editBacSi?mabs=<%=objItem.getMa() %>">Sửa<img src="<%=request.getContextPath() %>/templates/admin/img/pencil.gif" alt="edit" />  </a>
+		                  
+		                  <%} %>
+		                  </td>
 							<%} %>
 		                </tr>
-	              <%
-	              	}
-	              %>
+		                <%} %>
 	              </tbody>
 	            </table>
             </form>

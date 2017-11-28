@@ -71,12 +71,12 @@
 			                  <td style="text-align:center"><%=objUser.getRole() %></td>
 			                  <td width="13%" style="text-align:center">
 			                  <%
-		                        if("ADMIN".equals(objU.getRole())){
+		                        if("ADMIN".equals(objU.getRole())||objU.getId_user()==objUser.getId_user()){
 		                    %>
 		               				<a style="color:blue" href="<%=request.getContextPath() %>/admin/edit-user?uid=<%=objUser.getId_user() %>">Sửa<img src="<%=request.getContextPath() %>/templates/admin/img/pencil.gif" alt="edit" /> / </a>
 									<a style="color:blue" href="<%=request.getContextPath() %>/admin/del-user?uid=<%=objUser.getId_user() %>" onclick="return confirm('Bạn có muốn xóa hay không?')">Xóa <img src="<%=request.getContextPath() %>/templates/admin/img/bin.gif" width="16" height="16" alt="delete" /></a>
-									<%} %>
-			                  </td>
+							<%} %>
+							</td>
 			                </tr>
               		<%
               			}

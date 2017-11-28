@@ -84,7 +84,6 @@ public class ControllerAdminAddHocVien extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(stringDate1 + "\t" + date1);
 			java.sql.Date ngaySinh = new java.sql.Date(date1.getTime());
 			
 			// gioi tinh
@@ -102,6 +101,9 @@ public class ControllerAdminAddHocVien extends HttpServlet {
 			// lich su
 			String lichsu=new String(request.getParameter("lichsu").getBytes("ISO-8859-1"), "UTF-8");
 			
+			// dieu tri
+			String dieutri=new String(request.getParameter("dieutri").getBytes("ISO-8859-1"), "UTF-8");
+			
 			// ngay vao
 			String dVao=request.getParameter("dayvao");
 			String mVao=request.getParameter("monthvao");
@@ -114,7 +116,6 @@ public class ControllerAdminAddHocVien extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(stringDate2 + "\t" + date2);
 			java.sql.Date ngayVao = new java.sql.Date(date2.getTime());
 			
 			// ngay ra
@@ -129,11 +130,9 @@ public class ControllerAdminAddHocVien extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(stringDate3 + "\t" + date3);
 			java.sql.Date ngayRa = new java.sql.Date(date3.getTime());
-			System.out.println(ngayRa);
 			
-			HocVien objItem=new HocVien(mahv, tenhv, ngaySinh, gt, que, maphong, magv, mabs, ngayVao, ngayRa, mucdo, lichsu);
+			HocVien objItem=new HocVien(mahv, tenhv, ngaySinh, gt, que, maphong, magv, mabs, ngayVao, ngayRa, mucdo, lichsu,dieutri);
 			if(listHV.checkMahv(mahv) != null){
 				response.sendRedirect(request.getContextPath() + "/admin/addHocVien?msg=0");
 				return;

@@ -18,7 +18,7 @@ $(document).ready(function () {
 });
 </script> 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function() {
 	$('#my_table').dataTable( {
 		//"bRetrieve":true,
@@ -28,7 +28,7 @@ $(document).ready(function() {
 		} );
 });
 
-</script>
+</script> -->
       <div class="span12">
       <%
           		int msg = 0;
@@ -75,14 +75,14 @@ $(document).ready(function() {
 	                  <th style="vertical-align:middle">Ngày sinh</th>
 	                  <th style="vertical-align:middle">Giới tính</th>
 	                  <th style="vertical-align:middle">Quê quán</th>
-	                  <th style="vertical-align:middle">Mã phòng</th>
-	                  <th style="vertical-align:middle">Mã giáo viên</th>
-	                  <th style="vertical-align:middle">Mã bác sĩ</th>
+	                  <th style="vertical-align:middle">Mức độ</th>
 	                  <th style="vertical-align:middle">Ngày vào</th>
 	                  <th style="vertical-align:middle">Ngày ra</th>
-	                  <th style="vertical-align:middle">Mức độ</th>
-	                  <th style="vertical-align:middle">Lịch sử</th>
+	                  <%
+		                        if("ADMIN".equals(objU.getRole())){
+		                    %>
 	                  <th style="vertical-align:middle">Chức năng</th>
+	                  <%} %>
 	                </tr>
 	              </thead>
 	              <tbody>
@@ -92,38 +92,34 @@ $(document).ready(function() {
 				for (HocVien objItem : listItem){ 
 				%>
 		              	<tr>
-		                  <td width="5%" style="text-align:center;vertical-align:middle"><%=objItem.getMaHV() %></td>
-		                  <td width="10%" style="vertical-align:middle;"><%=objItem.getTenHV() %></td>
+		                  <td style="text-align:center;vertical-align:middle"><%=objItem.getMaHV() %></td>
+		                  <td  style=""><%=objItem.getTenHV() %></td>
 		                  <%
 		                      SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
 		                      String ns=sdf.format(objItem.getNgaySinh());
 		                      String nv=sdf.format(objItem.getNgayVao());
 		                      String nr=sdf.format(objItem.getNgayRa());
 		                  %>
-		                  <td width="8%" style="vertical-align:middle;text-align:center"><%=ns %></td>
+		                  <td  style="text-align:center"><%=ns %></td>
 		                  <%
 		                      if(objItem.getGioitinh()==1){
 		                  %>
-		                  <td width="5%" style="vertical-align:middle;text-align:center">Nam</td>
+		                  <td style="text-align:center">Nam</td>
 		                  <%}else{ %>
-		                  <td width="5%" style="vertical-align:middle;text-align:center">Nữ</td>
+		                  <td style="text-align:center">Nữ</td>
 		                  <%} %>
-		                  <td width="8%" style="vertical-align:middle;text-align:center"><%=objItem.getQueQuan() %></td>
-		                  <td width="5%" style="vertical-align:middle;text-align:center"><%=objItem.getMaPhong() %></td>
-		                  <td width="5%" style="vertical-align:middle;text-align:center"><%=objItem.getMaGV() %></td>
-		                  <td width="5%" style="vertical-align:middle;text-align:center"><%=objItem.getMaBS() %></td>
-		                  <td width="8%" style="vertical-align:middle;text-align:center"><%=nv %></td>
-		                  <td width="8%" style="vertical-align:middle;text-align:center"><%=nr %></td>
-		                  <td width="8%" style="vertical-align:middle;text-align:center"><%=objItem.getMucDo() %></td>
-		                  <td width="10%" style="vertical-align:middle;text-align:center"><%=objItem.getLichSu() %></td>
-		                  <td width="10%" style="text-align:center;vertical-align:middle">
+		                  <td  style="text-align:center"><%=objItem.getQueQuan() %></td>
+		                  <td style="text-align:center"><%=objItem.getMucDo() %></td>
+		                  <td style="text-align:center"><%=nv %></td>
+		                  <td style="text-align:center"><%=nr %></td>
 		                  <%
 		                        if("ADMIN".equals(objU.getRole())){
 		                    %>
-		                  	<a style="color:blue" href="<%=request.getContextPath() %>/admin/editHocVien?mahv=<%=objItem.getMaHV() %>">Sửa<img src="<%=request.getContextPath() %>/templates/admin/img/pencil.gif" alt="edit" /> / </a>
-							<a style="color:blue" href="<%=request.getContextPath() %>/admin/delHocVien?mahv=<%=objItem.getMaHV() %>" onclick="return confirm('Bạn có muốn xóa hay không?')">Xóa <img src="<%=request.getContextPath() %>/templates/admin/img/bin.gif" width="16" height="16" alt="delete" /></a>
+		                  <td style="text-align:center;=">
+		                  	<a style="color:blue" href="<%=request.getContextPath() %>/admin/HocVien/chitietHocVien?mahv=<%=objItem.getMaHV() %>">Chi tiết<img src="<%=request.getContextPath() %>/templates/admin/img/pencil.gif" alt="edit" /> / </a>
+							<a style="color:blue" href="<%=request.getContextPath() %>/admin/HocVien/delHocVien?mahv=<%=objItem.getMaHV() %>" onclick="return confirm('Bạn có muốn xóa hay không?')">Xóa <img src="<%=request.getContextPath() %>/templates/admin/img/bin.gif" width="16" height="16" alt="delete" /></a>
+						  </td>
 							<%} %>
-		                  </td>
 		                </tr>
 		              <% i++;} %>
 	              </tbody>
@@ -145,7 +141,7 @@ $(document).ready(function() {
 <script src="<%=request.getContextPath() %>/templates/admin/js/jquery.dataTables.min.js"></script> 
 <script src="<%=request.getContextPath() %>/templates/admin/js/matrix.js"></script> 
 <script src="<%=request.getContextPath() %>/templates/admin/js/matrix.tables.js"></script>
-<script type="text/javascript">
+<%-- <script type="text/javascript">
 	function setActive(nid, active){
 		$.ajax({
 			url: '<%=request.getContextPath()%>/active',
@@ -179,6 +175,6 @@ $(document).ready(function() {
 	    	return false;
 	    }
 	}
-</script>
+</script> --%>
 </body>
 </html>

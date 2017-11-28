@@ -624,6 +624,25 @@
 	                <textarea class="span11"  name="lichsu" ><%=objItem.getLichSu() %></textarea>
 	              </div>
               </div>
+              
+               <div class="control-group">
+              	<label class="control-label">Cách thức điều trị</label>
+              	 <div class="controls">
+	                <textarea id="dieutri" name="dieutri" ><%=objItem.getDieutri()%></textarea>
+	                <script type="text/javascript">
+						CKEDITOR.replace("dieutri",{
+							width: '810px',
+							filebrowserBrowseUrl : '../ckfinder/ckfinder.html',
+							filebrowserImageBrowseUrl : '../ckfinder/ckfinder.html?type=Images',
+							filebrowserFlashBrowseUrl : '../ckfinder/ckfinder.html?type=Flash',
+							filebrowserUploadUrl : '../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Files',
+							filebrowserImageUploadUrl : '../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images',
+							filebrowserFlashUploadUrl : '../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
+						});	                	
+	                </script>
+	                 </div>
+	              </div>
+              
               <div class="control-group">
                 <div class="controls">
 	                <input type="submit" name="submit" value="Sửa học viên" class="btn btn-success">

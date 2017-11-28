@@ -35,17 +35,12 @@
         <div class="widget-box">
           <br />
           &emsp;&ensp;
-          <%
-		                        Users objU=(Users) session.getAttribute("sObjUser");
-		                        if("ADMIN".equals(objU.getRole())){
-		                    %>
 	      <div class="btn btn-info">
 			  <!-- Button -->
 			  <div>
 		      	<a style="color:white" href="<%=request.getContextPath() %>/admin/add-news" title="Thêm tin tức" class="templatemo-white-button">Thêm tin tức</a>
 			  </div>
 		  </div>
-		  <%} %>
           <div class="widget-content nopadding">
           <br />
           	<form method="post" action="">
@@ -76,17 +71,11 @@
 		                  </td>
 		                  <td width="10%" style="vertical-align:middle;text-align:center"><%=objNews.getNgaydang() %></td>
 		                  <td width="15%" style="text-align:center;vertical-align:middle">
-		                  <%
-		                        if("ADMIN".equals(objU.getRole())){
-		                    %>
 		                  	<a style="color:blue" href="<%=request.getContextPath() %>/admin/edit-news?nid=<%=objNews.getId_news() %>">Sửa<img src="<%=request.getContextPath() %>/templates/admin/img/pencil.gif" alt="edit" /> / </a>
 							<a style="color:blue" href="<%=request.getContextPath() %>/admin/del-news?nid=<%=objNews.getId_news() %>" onclick="return confirm('Bạn có muốn xóa hay không?')">Xóa <img src="<%=request.getContextPath() %>/templates/admin/img/bin.gif" width="16" height="16" alt="delete" /></a>
 							<%} %>
 		                  </td>
 		                </tr>
-	              <%
-	              	}
-	              %>
 	              </tbody>
 	            </table>
             </form>

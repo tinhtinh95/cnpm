@@ -78,7 +78,7 @@ public class ModelHocVien {
 	
 	public int addItem(HocVien objHocVien) {
 		conn = lcdb.getConnectMySQL();
-		String query = "INSERT INTO hocvien VALUE(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO hocvien VALUE(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		int result = 0;
 		try {
 			pst = conn.prepareStatement(query);
@@ -94,6 +94,7 @@ public class ModelHocVien {
 			pst.setDate(10, (Date) objHocVien.getNgayRa());
 			pst.setString(11, objHocVien.getMucDo());
 			pst.setString(12, objHocVien.getLichSu());
+			pst.setString(13, objHocVien.getDieutri());
 			pst.executeUpdate();
 			result = 1;
 		} catch (SQLException e) {
@@ -137,7 +138,7 @@ public class ModelHocVien {
 	public int editItem(HocVien objHocVien) {
 		conn = lcdb.getConnectMySQL();
 		int result = 0;
-		String query = "UPDATE hocvien SET tenhv = ?, ngaysinh=?, gioitinh=?, quequan=?, maphong=?, magv=?, mabs=?, ngayvao=?, ngayra=?, mucdo=?,lichsu=? WHERE mahv = ? LIMIT 1";
+		String query = "UPDATE hocvien SET tenhv = ?, ngaysinh=?, gioitinh=?, quequan=?, maphong=?, magv=?, mabs=?, ngayvao=?, ngayra=?, mucdo=?,lichsu=?,phuongthucdieutri=? WHERE mahv = ? LIMIT 1";
 		try {
 			pst = conn.prepareStatement(query);
 			pst.setString(1, objHocVien.getTenHV());
@@ -151,7 +152,8 @@ public class ModelHocVien {
 			pst.setDate(9, (Date) objHocVien.getNgayRa());
 			pst.setString(10, objHocVien.getMucDo());
 			pst.setString(11, objHocVien.getLichSu());
-			pst.setString(12, objHocVien.getMaHV());
+			pst.setString(12, objHocVien.getDieutri());
+			pst.setString(13, objHocVien.getMaHV());
 			pst.executeUpdate();
 			result = 1;
 		} catch (SQLException e) {

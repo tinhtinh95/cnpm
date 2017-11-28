@@ -43,6 +43,7 @@ public class ControllerAdminLogin extends HttpServlet {
 		// TODO Auto-generated method stub
 		ModelUsers mUser = new ModelUsers();
 		HttpSession session = request.getSession();
+		if(session.getAttribute("sObjUser")==null) {
 		
 		if(request.getParameter("submit") != null ){
 			String username = request.getParameter("username");
@@ -69,6 +70,10 @@ public class ControllerAdminLogin extends HttpServlet {
 		else{
 			RequestDispatcher rd = request.getRequestDispatcher("/admin/login.jsp");
 			rd.forward(request, response);
+		}
+		}else {
+			response.sendRedirect(request.getContextPath() + "/admin/home");
+			return;
 		}
 	}
 

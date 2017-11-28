@@ -58,7 +58,7 @@ public class ControllerPublicThacMac extends HttpServlet {
 			String ngaydang = sdf.format(date);
 			Question objQues = new Question(0, tennguoihoi, noidungcauhoi, 0, "", email, ngaydang);
 			if(mQues.addItem(objQues) > 0){
-				response.sendRedirect(request.getContextPath() + "/index");
+				response.sendRedirect(request.getContextPath() + "/trang-chu");
 				return;
 			}
 		}
