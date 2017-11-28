@@ -235,7 +235,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ControllerAdminEditHocVien</servlet-name>
-    <url-pattern>/admin/editHocVien</url-pattern>
+    <url-pattern>/admin/HocVien/editHocVien</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -244,7 +244,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ControllerAdminDelHocVien</servlet-name>
-    <url-pattern>/admin/delHocVien</url-pattern>
+    <url-pattern>/admin/HocVien/delHocVien</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ControllerAdminDetailHocVien</servlet-name>
+    <servlet-class>controller.ControllerAdminDetailHocVien</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerAdminDetailHocVien</servlet-name>
+    <url-pattern>/admin/HocVien/chitietHocVien</url-pattern>
   </servlet-mapping>
   
   <!-- Bác sĩ -->

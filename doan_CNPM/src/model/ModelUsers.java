@@ -198,7 +198,7 @@ public class ModelUsers {
 			pst.setString(1, username);
 			rs = pst.executeQuery();
 			if(rs.next()){
-				objUser = new Users(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), rs.getString("fullname"),rs.getString("role"));	
+				objUser = new Users(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), rs.getString("fullname"),rs.getString("role"),rs.getString("maNhanSu"));	
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -227,7 +227,7 @@ public class ModelUsers {
 			pst.setString(2, LibStringMd5.LibMd5(password));
 			rs = pst.executeQuery();
 			if(rs.next()){
-				objUser = new Users(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), rs.getString("fullname"),rs.getString("role"));	
+				objUser = new Users(rs.getInt("id_user"), rs.getString("username"), rs.getString("password"), rs.getString("fullname"),rs.getString("role"),rs.getString("maNhanSu"));	
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

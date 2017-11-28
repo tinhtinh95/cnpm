@@ -54,7 +54,7 @@
 	              	for(Question objQues : listQues){
 	              %>
 	              		<tr>
-		                  <td style="text-align:center;vertical-align:middle" width="5%" style="text-align:center"><%=objQues.getId_cauhoi() %></td>
+		                  <td style="text-align:center;vertical-align:middle" width="5%"><%=objQues.getId_cauhoi() %></td>
 		                  <td style="text-align: center" width="15%"><%=objQues.getTennguoihoi() %></td>
 		                  <td width="30%"><a href="<%=request.getContextPath() %>/admin/content-answer?qid=<%=objQues.getId_cauhoi() %>"><%=objQues.getNoidung() %></a></td>
 		             		<%
@@ -79,12 +79,7 @@
 		                  	<%
 		                  		}
 		                  	%>
-		                  	 <%
-		                        Users objU=(Users) session.getAttribute("sObjUser");
-		                        if("ADMIN".equals(objU.getRole())){
-		                    %>
 							/<a style="color:blue" href="<%=request.getContextPath() %>/admin/del-question?qid=<%=objQues.getId_cauhoi() %>" onclick="return confirm('Bạn có muốn xóa hay không?')">Xóa <img src="<%=request.getContextPath() %>/templates/admin/img/bin.gif" width="16" height="16" alt="delete" /></a>
-							<%} %>
 		                  </td>
 		                </tr>
 	              <%
