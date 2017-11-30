@@ -33,6 +33,7 @@ public class ModelHocVien {
 			rs = st.executeQuery(query);
 			while (rs.next()){
 				item = new HocVien(rs.getString("mahv"), rs.getString("tenhv"),rs.getDate("ngaysinh"),rs.getInt("gioitinh"),rs.getString("quequan"),rs.getString("maphong"),rs.getString("magv"),rs.getString("mabs"),rs.getDate("ngayvao"),rs.getDate("ngayra"),rs.getString("mucdo"),rs.getString("lichsu"));
+				//System.out.println(rs.getDate("ngayra"));
 				listItem.add(item);
 			}
 		} catch (SQLException e) {
@@ -119,7 +120,7 @@ public class ModelHocVien {
 			pst.setString(1, mahv);
 			rs = pst.executeQuery();
 			while(rs.next()){
-				objItem =new HocVien(mahv, rs.getString("tenhv"),rs.getDate("ngaysinh"),rs.getInt("gioitinh"),rs.getString("quequan"),rs.getString("maphong"),rs.getString("magv"),rs.getString("mabs"),rs.getDate("ngayvao"),rs.getDate("ngayra"),rs.getString("mucdo"),rs.getString("lichsu"));
+				objItem =new HocVien(mahv, rs.getString("tenhv"),rs.getDate("ngaysinh"),rs.getInt("gioitinh"),rs.getString("quequan"),rs.getString("maphong"),rs.getString("magv"),rs.getString("mabs"),rs.getDate("ngayvao"),rs.getDate("ngayra"),rs.getString("mucdo"),rs.getString("lichsu"),rs.getString("phuongthucdieutri"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

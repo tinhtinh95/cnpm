@@ -246,7 +246,7 @@
               <div class="control-group">
                 <div class="controls">
 	                <input type="submit" name="submit" value="Sửa bác sĩ" class="btn btn-success">
-	                <a href="<%=request.getContextPath() %>/admin/BacSi" class="btn btn-success">Hủy</a>
+	                <a href="<%=request.getContextPath() %>/admin/NhanSu" class="btn btn-success">Hủy</a>
                 </div>
                 
               </div>

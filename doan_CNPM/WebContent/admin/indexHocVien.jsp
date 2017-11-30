@@ -98,7 +98,12 @@ $(document).ready(function() {
 		                      SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
 		                      String ns=sdf.format(objItem.getNgaySinh());
 		                      String nv=sdf.format(objItem.getNgayVao());
-		                      String nr=sdf.format(objItem.getNgayRa());
+		                      String nr="";
+		                      if(objItem.getNgayRa()==null){
+		                    	  nr="Chưa xác định";
+		                      }else{
+		                    	  nr=sdf.format(objItem.getNgayRa());
+		                      }
 		                  %>
 		                  <td  style="text-align:center"><%=ns %></td>
 		                  <%

@@ -122,17 +122,25 @@ public class ControllerAdminAddHocVien extends HttpServlet {
 			String dRa=request.getParameter("dayra");
 			String mRa=request.getParameter("monthra");
 			String yRa=request.getParameter("yearra");
-			String stringDate3 = dRa+"/"+mRa+"/"+yRa;
-			Date date3=new Date();
-			try {
-				date3 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate3);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			java.sql.Date ngayRa = new java.sql.Date(date3.getTime());
 			
-			HocVien objItem=new HocVien(mahv, tenhv, ngaySinh, gt, que, maphong, magv, mabs, ngayVao, ngayRa, mucdo, lichsu,dieutri);
+			HocVien objItem=null;
+			
+			if(!"-1".equals(dRa) && !"-1".equals(mRa) && !"-1".equals(yRa)) {
+
+				String stringDate3 = dRa+"/"+mRa+"/"+yRa;
+				Date date3=new Date();
+				try {
+					date3 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate3);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				java.sql.Date ngayRa = new java.sql.Date(date3.getTime());
+				objItem=new HocVien(mahv, tenhv, ngaySinh, gt, que, maphong, magv, mabs, ngayVao, ngayRa, mucdo, lichsu,dieutri);
+			}else {
+				objItem=new HocVien(mahv, tenhv, ngaySinh, gt, que, maphong, magv, mabs, ngayVao, null, mucdo, lichsu,dieutri);
+			}
+			
 			if(listHV.checkMahv(mahv) != null){
 				response.sendRedirect(request.getContextPath() + "/admin/addHocVien?msg=0");
 				return;
