@@ -100,16 +100,23 @@ public class ControllerAdminEditHocVien extends HttpServlet {
 			String dRa=request.getParameter("dayra");
 			String mRa=request.getParameter("monthra");
 			String yRa=request.getParameter("yearra");
-			String stringDate3 = dRa+"/"+mRa+"/"+yRa;
-			Date date3=new Date();
-			try {
-				date3 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate3);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			java.sql.Date ngayRa = new java.sql.Date(date3.getTime());
 			
-			HocVien objHV=new HocVien(mahv, tenhv, ngaySinh, gt, que, maphong, magv, mabs, ngayVao, ngayRa, mucdo, lichsu,dieutri);
+			HocVien objHV=null;
+
+			if(!"-1".equals(dRa) && !"-1".equals(mRa) && !"-1".equals(yRa)) {
+				String stringDate3 = dRa+"/"+mRa+"/"+yRa;
+				Date date3=new Date();
+				try {
+					date3 = new SimpleDateFormat("dd/MM/yyyy").parse(stringDate3);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				java.sql.Date ngayRa = new java.sql.Date(date3.getTime());
+				
+				objHV=new HocVien(mahv, tenhv, ngaySinh, gt, que, maphong, magv, mabs, ngayVao, ngayRa, mucdo, lichsu,dieutri);
+			}else {
+				objHV=new HocVien(mahv, tenhv, ngaySinh, gt, que, maphong, magv, mabs, ngayVao, null, mucdo, lichsu,dieutri);
+			}
 			int result =mHocVien.editItem(objHV);
 			if (result == 0){
 				response.sendRedirect(request.getContextPath() + "/admin/HocVien?msg=0");

@@ -45,7 +45,6 @@
 					var ngayra = document.form1.dayra.value;
 					var thangra = document.form1.monthra.value;
 					var namra = document.form1.yearra.value;
-					alert(tenhv);
 					
 					// ----------------------------------------------------------------------------------
 					// validate Tenhv
@@ -142,34 +141,22 @@
 					// ---------------------------------------------------------------------------------------
 					
 					// validate ngay thang nam ra
-					if(ngayra == -1){
-						document.getElementById("ngaythangnamra").innerHTML = "Chưa chọn ngày!";
-						check = false;
-					}
-					if(thangra == -1){
-						document.getElementById("ngaythangnamra").innerHTML = "Chưa chọn tháng!";
-						check = false;
-					}
-					if(namra == -1){
-						document.getElementById("ngaythangnamra").innerHTML = "Chưa chọn năm!";
-						check = false;
-					}
-					
-					else if(ngayra != -1 && thangra != -1 && namra != -1) document.getElementById("ngaythangnamra").innerHTML = "";
-					
-					if(thangra==02 && ngayra >28 && (namra%4!=0)){
-						document.getElementById("ngaythangnamra").innerHTML = "Không phải năm nhuận nên tháng 2 chỉ có 28 ngày, vui lòng chọn lại!";
-						check = false;
-					}
-					if(( thangra ==4 || thangra ==6 || thangra==9 ||thangra ==11) && ngayra >30){
-						document.getElementById("ngaythangnamra").innerHTML = "Tháng này chỉ có 30 ngày, vui lòng chọn lại";
-						check = false;
-					}
-					
-					if(((namra%4==0)&&(namra%100!=0))||(namra%400==0)){
-						if(thangra==02 && ngayra>29){
-							document.getElementById("ngaythangnamra").innerHTML = "Tháng 2 năm nhuận chỉ có 29 ngày, vui lòng chọn lại!";
+					if(ngayra != -1 && thangra != -1 && namra != -1) document.getElementById("ngaythangnamra").innerHTML = "";
+					if(ngayra != -1 && thangra != -1 && namra != -1 ){
+						if(thangra==02 && ngayra >28 && (namra%4!=0)){
+							document.getElementById("ngaythangnamra").innerHTML = "Không phải năm nhuận nên tháng 2 chỉ có 28 ngày, vui lòng chọn lại!";
 							check = false;
+						}
+						if(( thangra ==4 || thangra ==6 || thangra==9 ||thangra ==11) && ngayra >30){
+							document.getElementById("ngaythangnamra").innerHTML = "Tháng này chỉ có 30 ngày, vui lòng chọn lại";
+							check = false;
+						}
+						
+						if(((namra%4==0)&&(namra%100!=0))||(namra%400==0)){
+							if(thangra==02 && ngayra>29){
+								document.getElementById("ngaythangnamra").innerHTML = "Tháng 2 năm nhuận chỉ có 29 ngày, vui lòng chọn lại!";
+								check = false;
+							}
 						}
 					}
 					
@@ -180,21 +167,28 @@
 					var d=new Date(ns);
 					
 					var nv=ngayvao+"/"+thangvao+"/"+namvao;
+					
 					var dv=new Date(nv);
-					var nr=ngayra+"/"+thangra+"/"+namra;
-					var dr=new Date(nr);
 					if(d>dv){
-						document.getElementById("ngaythangnam").innerHTML = "Ngày sinh phải nhỏ hơn ngày vào";
+						document.getElementById("ngaythangnamvao").innerHTML = "Ngày vào phải lớn hơn ngày sinh";
 					    check = false;
 					}
-					if(d>dr){
-						document.getElementById("ngaythangnam").innerHTML = "Ngày sinh phải nhỏ hơn ngày ra";
-						check = false; 
+					
+					if(ngayra != -1 && thangra != -1 && namra != -1 ){
+						var nr=ngayra+"/"+thangra+"/"+namra;
+						var dr=new Date(nr);
+						if(d>dr){
+							document.getElementById("ngaythangnamra").innerHTML = "Ngày ra phải lớn hơn ngày sinh";
+							check = false; 
+						}
+						if(dv>dr){
+							document.getElementById("ngaythangnamra").innerHTML = "Ngày ra phải lớn hơn ngày vào";
+							check = false;
+						}
+					}else{
+						document.getElementById("ngaythangnamra").innerHTML = "Chưa xác định";
 					}
-					if(dv>dr){
-						document.getElementById("ngaythangnamra").innerHTML = "Ngày ra phải lớn hơn ngày vào";
-						check = false;
-					}
+					
 					// ---------------------------------------------------------------------------------------
 					
 					// validate que quan
@@ -264,13 +258,18 @@
                 String thang2=nv[1];
                 String nam2=nv[2];
            // tách ngày ra
-                Date date3=objItem.getNgayRa();
-            	SimpleDateFormat sdf3 = new SimpleDateFormat("dd/MM/yyyy");
-                String ngayra= sdf3.format(date3);
-                String []nr=ngayra.split("/");
-                String ngay3=nr[0];
-                String thang3=nr[1];
-                String nam3=nr[2];
+           		String ngay3="-1";
+           		String thang3="-1";
+           		String nam3="-1";
+           		if(objItem.getNgayRa()!=null){
+           			Date date3=objItem.getNgayRa();
+                	SimpleDateFormat sdf3 = new SimpleDateFormat("dd/MM/yyyy");
+                    String ngayra= sdf3.format(date3);
+                    String []nr=ngayra.split("/");
+                    ngay3=nr[0];
+                    thang3=nr[1];
+                    nam3=nr[2];
+           		}
             %>
               <div class="control-group">
                 <label class="control-label">Mã học viên(*)</label>

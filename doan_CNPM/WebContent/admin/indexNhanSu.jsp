@@ -50,14 +50,11 @@
 		                        Users objU=(Users) session.getAttribute("sObjUser");
           						String ma="";
           						String mans=objU.getMaNhanSu();
-          						out.print(mans);
           						mans=mans.trim().substring(0, 2);
-          						out.print(mans);
           						if("BS".equals(mans)||"GV".equals(mans)){
           							ma=objU.getMaNhanSu().trim();
           							
           						}
-          						out.print(ma);
 		                        if("ADMIN".equals(objU.getRole())){
 		                    %>
 	      <div class="btn btn-info">
@@ -162,41 +159,7 @@
 <script src="<%=request.getContextPath() %>/templates/admin/js/matrix.js"></script> 
 <script src="<%=request.getContextPath() %>/templates/admin/js/matrix.tables.js"></script>
 
-<script type="text/javascript">
-	function setActive(nid, active){
-		$.ajax({
-			url: '<%=request.getContextPath()%>/active',
-			type: 'POST',
-			cache: false,
-			data: {
-				anid: nid, aactive: active
-			},
-			success: function(data){
-				$('#setactive-' + nid).html(data);
-			},
-			error: function (){
-				alert('Có lỗi xảy ra');
-			}
-		});
-		return false;
-	}
-	
-	function valDels(){
-		var checked = false;
-	    $('input[type="checkbox"][name="checkbox"]').each(function() {
-	        if($(this).is(":checked")) {
-	        	checked = true;
-	        }
-	    });
-	    
-	    if (checked == true){
-			return confirm('Bạn có muốn xóa các mẫu tin đã chọn?');
-	    } else {
-	    	alert('Chọn ít nhất một tin để xóa!!');
-	    	return false;
-	    }
-	}
-</script>
+
 <!-- <script type="text/javascript">
 	$(document).ready(function() {
 		$('#myTable').dataTable({

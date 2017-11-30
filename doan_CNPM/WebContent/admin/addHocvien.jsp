@@ -172,7 +172,7 @@
 					// ---------------------------------------------------------------------------------------
 					
 					// validate ngay thang nam ra
-					if(ngayra == -1){
+					/* if(ngayra == -1){
 						document.getElementById("ngaythangnamra").innerHTML = "Chưa chọn ngày!";
 						check = false;
 					}
@@ -183,23 +183,24 @@
 					if(namra == -1){
 						document.getElementById("ngaythangnamra").innerHTML = "Chưa chọn năm!";
 						check = false;
-					}
+					} */
 					
-					else if(ngayra != -1 && thangra != -1 && namra != -1) document.getElementById("ngaythangnamra").innerHTML = "";
-					
-					if(thangra==02 && ngayra >28 && (namra%4!=0)){
-						document.getElementById("ngaythangnamra").innerHTML = "Không phải năm nhuận nên tháng 2 chỉ có 28 ngày, vui lòng chọn lại!";
-						check = false;
-					}
-					if(( thangra ==4 || thangra ==6 || thangra==9 ||thangra ==11) && ngayra >30){
-						document.getElementById("ngaythangnamra").innerHTML = "Tháng này chỉ có 30 ngày, vui lòng chọn lại";
-						check = false;
-					}
-					
-					if(((namra%4==0)&&(namra%100!=0))||(namra%400==0)){
-						if(thangra==02 && ngayra>29){
-							document.getElementById("ngaythangnamra").innerHTML = "Tháng 2 năm nhuận chỉ có 29 ngày, vui lòng chọn lại!";
+					if(ngayra != -1 && thangra != -1 && namra != -1) document.getElementById("ngaythangnamra").innerHTML = "";
+					if(ngayra != -1 && thangra != -1 && namra != -1 ){
+						if(thangra==02 && ngayra >28 && (namra%4!=0)){
+							document.getElementById("ngaythangnamra").innerHTML = "Không phải năm nhuận nên tháng 2 chỉ có 28 ngày, vui lòng chọn lại!";
 							check = false;
+						}
+						if(( thangra ==4 || thangra ==6 || thangra==9 ||thangra ==11) && ngayra >30){
+							document.getElementById("ngaythangnamra").innerHTML = "Tháng này chỉ có 30 ngày, vui lòng chọn lại";
+							check = false;
+						}
+						
+						if(((namra%4==0)&&(namra%100!=0))||(namra%400==0)){
+							if(thangra==02 && ngayra>29){
+								document.getElementById("ngaythangnamra").innerHTML = "Tháng 2 năm nhuận chỉ có 29 ngày, vui lòng chọn lại!";
+								check = false;
+							}
 						}
 					}
 					
@@ -210,21 +211,29 @@
 					var d=new Date(ns);
 					
 					var nv=ngayvao+"/"+thangvao+"/"+namvao;
+					
 					var dv=new Date(nv);
-					var nr=ngayra+"/"+thangra+"/"+namra;
-					var dr=new Date(nr);
 					if(d>dv){
 						document.getElementById("ngaythangnamvao").innerHTML = "Ngày vào phải lớn hơn ngày sinh";
 					    check = false;
 					}
-					if(d>dr){
-						document.getElementById("ngaythangnamra").innerHTML = "Ngày ra phải lớn hơn ngày sinh";
-						check = false; 
+					
+					if(ngayra != -1 && thangra != -1 && namra != -1 ){
+						var nr=ngayra+"/"+thangra+"/"+namra;
+						var dr=new Date(nr);
+						if(d>dr){
+							document.getElementById("ngaythangnamra").innerHTML = "Ngày ra phải lớn hơn ngày sinh";
+							check = false; 
+						}
+						if(dv>dr){
+							document.getElementById("ngaythangnamra").innerHTML = "Ngày ra phải lớn hơn ngày vào";
+							check = false;
+						}
+					}else{
+						document.getElementById("ngaythangnamra").innerHTML = "Chưa xác định";
 					}
-					if(dv>dr){
-						document.getElementById("ngaythangnamra").innerHTML = "Ngày ra phải lớn hơn ngày vào";
-						check = false;
-					}
+					
+					
 					// ---------------------------------------------------------------------------------------
 					
 					// validate que quan

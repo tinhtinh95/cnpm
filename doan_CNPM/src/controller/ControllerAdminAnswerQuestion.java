@@ -82,18 +82,47 @@ public class ControllerAdminAnswerQuestion extends HttpServlet {
 	                return new PasswordAuthentication("nttinh995@gmail.com", "tinhtinh");
 	            }
 	        });
+	        
 	        try {
-	            Message message = new MimeMessage(session);
-	            message.setHeader("Content-Type", "text/html; charset=UTF-8");
+	            // Create a default MimeMessage object.
+	            MimeMessage message = new MimeMessage(session);
+	            
+	            // Set From: header field of the header.
 	            message.setFrom(new InternetAddress("nttinh995@gmail.com"));
-	            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(objQues.getEmail()));
-	            message.setSubject("Trả lời câu hỏi của bạn trên trungtamgaynghien.vn");
-	            message.setText("Chào bạn,\n Cảm ơn đã đặt câu hỏi.\n Chúng tôi xin trả lời câu hỏi của bạn như sau:\n "+traloi);
+	            
+	            // Set To: header field of the header.
+	            message.addRecipient(Message.RecipientType.TO, new InternetAddress(objQues.getEmail()));
+	            
+	            // Set Subject: header field
+	            message.setSubject("[Hỏi đáp] Trung tâm cai nghiện!");
+	           
+	            // Send the actual HTML message, as big as you like
+	            message.setContent("<html><h1>Trả lời câu hỏi trên trung tâm cai nghiện:</h1>"
+	            	    +"<p>Câu hỏi: "+objQues.getNoidung() +"</p> "
+	            		+ "<strong>Trả lời</strong>"
+	            		+ "<p>"+traloi+"</p>"
+	            		+ "</html>", "text/html; charset=UTF-8" );
+	            
+	            // Send message
 	            Transport.send(message);
-	        } catch (MessagingException e) {
-	            System.out.println("Error");
-	            check=false;
-	        }
+//	            result = "Sent message successfully....";
+	         } catch (MessagingException mex) {
+	            mex.printStackTrace();
+//	            result = "Error: unable to send message....";
+	         }
+	        
+//	        try {
+//	            Message message = new MimeMessage(session);
+//	            message.setHeader("Content-Type", "text/html; charset=UTF-8");
+//	            message.setFrom(new InternetAddress("nttinh995@gmail.com"));
+//	            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(objQues.getEmail()));
+//	            message.setSubject("Trả lời câu hỏi của bạn trên trungtamgaynghien.vn");
+//	            message.setText("Chào bạn,\n Cảm ơn đã đặt câu hỏi.\n Chúng tôi xin trả lời câu hỏi của bạn như sau:\n "+traloi);
+//	            Transport.send(message);
+//	        } catch (MessagingException e) {
+//	            System.out.println("Error");
+//	            check=false;
+//	        }
 			if(check) {
 				if(mQues.editItem(objItem,traloi)>0){
 					response.sendRedirect(request.getContextPath()+"/admin/question?msg=1");
