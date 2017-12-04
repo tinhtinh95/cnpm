@@ -22,6 +22,8 @@
 						alt="Giới thiệu" />
 					</a>
 				</article>
+<!— hihi —>
+
 				<!-- <a href="" class="custom-button slider-button button-primary">Chi tiết</a> -->
 			</div>
 		</div>
